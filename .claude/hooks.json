@@ -1,0 +1,11 @@
+{
+  "hooks": [
+    {
+      "name": "block-protected-files",
+      "description": "Prevent edits to sensitive files (.env, secrets, prod configs)",
+      "event": "pre_tool_call",
+      "tools": ["Write", "Edit"],
+      "command": "case \"$CLAUDE_FILE_PATH\" in *.env|*.env.*|*/.env|*/.env.*|*/secrets/*|*/credentials/*|*.prod.*|*prod.config.*) echo \"BLOCKED: $CLAUDE_FILE_PATH is a protected file\" >&2; exit 1;; esac"
+    }
+  ]
+}
