@@ -3,7 +3,7 @@ import { PARTNERS, CHAINS } from '@/lib/constants';
 
 export const metadata = {
   title: 'Documentation',
-  description: 'Learn how to use Classic USD ($USC) - the first fiat-backed stablecoin on Ethereum Classic.',
+  description: 'Learn how to use Classic USD ($USC) - the US dollar for Ethereum Classic.',
 };
 
 export default function DocsPage() {

@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: '/images/og-usc.png',
         width: 1200,
         height: 630,
-        alt: 'Classic USD - The First Fiat-Backed Stablecoin on Ethereum Classic',
+        alt: 'Classic USD - The US Dollar for Ethereum Classic',
         type: 'image/png',
       },
     ],
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     description: SITE.description,
     images: {
       url: '/images/og-usc.png',
-      alt: 'Classic USD - The First Fiat-Backed Stablecoin on Ethereum Classic',
+      alt: 'Classic USD - The US Dollar for Ethereum Classic',
     },
   },
 

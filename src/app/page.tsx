@@ -5,8 +5,36 @@ import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { PriceDisplay } from '@/components/PriceDisplay';
+import { FAQAccordion } from '@/components/FAQAccordion';
 import { fadeInUp, staggerContainer, staggerItem, viewportSettings } from '@/lib/animations';
 import { PARTNERS, LINKS, INTEGRATIONS, CHAINS } from '@/lib/constants';
+
+const faqItems = [
+  {
+    question: 'What is Classic USD ($USC)?',
+    answer:
+      'Classic USD is a fiat-backed stablecoin issued on Ethereum Classic and Polygon. Each $USC token is backed 1:1 by US dollars held in reserve, making it redeemable at any time for USD, USDC, or USDP through the Brale Platform.',
+  },
+  {
+    question: 'Who issues Classic USD?',
+    answer: `Classic USD is issued by Brale Inc., a US-regulated financial services company (NMLS #${PARTNERS.brale.nmls}). Brale holds state money transmission licenses and maintains full compliance with US financial regulations.`,
+  },
+  {
+    question: 'How do I get Classic USD?',
+    answer:
+      'You can mint $USC directly through the Brale Platform by depositing USD, or trade for it on decentralized exchanges like ETCswap. $USC is also available through Brale\'s institutional API for businesses.',
+  },
+  {
+    question: 'Why Ethereum Classic?',
+    answer:
+      'Ethereum Classic is a proof-of-work blockchain with strong decentralization and immutability guarantees. $USC brings dollar liquidity to ETC\'s growing DeFi ecosystem and enables the network to participate in the broader stablecoin economy.',
+  },
+  {
+    question: 'Is Classic USD audited?',
+    answer:
+      'Yes. Brale provides regular third-party attestations verifying that $USC reserves match or exceed the tokens in circulation. The $USC smart contract follows standard ERC-20 patterns and has been reviewed for security.',
+  },
+];
 
 export default function Home() {
   return (
@@ -63,9 +91,9 @@ export default function Home() {
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
             variants={staggerItem}
           >
-            <span className="text-usc-text">The First </span>
-            <span className="text-gradient-usc">Fiat-Backed Stablecoin</span>
-            <span className="text-usc-text"> on Ethereum Classic</span>
+            <span className="text-usc-text">The </span>
+            <span className="text-gradient-usc">US Dollar</span>
+            <span className="text-usc-text"> for Ethereum Classic</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -73,8 +101,8 @@ export default function Home() {
             className="text-xl md:text-2xl text-usc-text-secondary mb-10 max-w-2xl mx-auto"
             variants={staggerItem}
           >
-            Classic USD ($USC) is backed by fiat reserves, offering stability and trust.
-            Each USC is exchangeable for one US dollar, ensuring reliability.
+            Classic USD ($USC) is the definitive stablecoin for ETC. US-regulated, fully backed,
+            and redeemable 1:1 for USD.
           </motion.p>
 
           {/* CTAs */}
@@ -826,62 +854,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="space-y-4">
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <h3 className="text-lg font-bold text-usc-text mb-2">
-                What is Classic USD ($USC)?
-              </h3>
-              <p className="text-usc-text-secondary">
-                Classic USD is a fiat-backed stablecoin issued on Ethereum Classic and Polygon.
-                Each $USC token is backed 1:1 by US dollars held in reserve, making it redeemable
-                at any time for USD, USDC, or USDP through the Brale Platform.
-              </p>
-            </motion.div>
-
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <h3 className="text-lg font-bold text-usc-text mb-2">
-                Who issues Classic USD?
-              </h3>
-              <p className="text-usc-text-secondary">
-                Classic USD is issued by Brale Inc., a US-regulated financial services company
-                (NMLS #{PARTNERS.brale.nmls}). Brale holds state money transmission licenses
-                and maintains full compliance with US financial regulations.
-              </p>
-            </motion.div>
-
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <h3 className="text-lg font-bold text-usc-text mb-2">
-                How do I get Classic USD?
-              </h3>
-              <p className="text-usc-text-secondary">
-                You can mint $USC directly through the Brale Platform by depositing USD, or trade
-                for it on decentralized exchanges like ETCswap. $USC is also available through
-                Brale&apos;s institutional API for businesses.
-              </p>
-            </motion.div>
-
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <h3 className="text-lg font-bold text-usc-text mb-2">
-                Why Ethereum Classic?
-              </h3>
-              <p className="text-usc-text-secondary">
-                Ethereum Classic is a proof-of-work blockchain with strong decentralization and
-                immutability guarantees. $USC brings dollar liquidity to ETC&apos;s growing DeFi
-                ecosystem and enables the network to participate in the broader stablecoin economy.
-              </p>
-            </motion.div>
-
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <h3 className="text-lg font-bold text-usc-text mb-2">
-                Is Classic USD audited?
-              </h3>
-              <p className="text-usc-text-secondary">
-                Yes. Brale provides regular third-party attestations verifying that $USC reserves
-                match or exceed the tokens in circulation. The $USC smart contract follows standard
-                ERC-20 patterns and has been reviewed for security.
-              </p>
-            </motion.div>
-          </div>
+          <FAQAccordion items={faqItems} />
         </motion.div>
       </section>
 
@@ -1031,7 +1004,7 @@ export default function Home() {
             <div className="text-center md:text-left">
               <p className="text-usc-text font-bold text-lg mb-1">Classic USD</p>
               <p className="text-usc-text-muted text-sm">
-                The first fiat-backed stablecoin on Ethereum Classic
+                The US Dollar for Ethereum Classic
               </p>
             </div>
             <div className="flex gap-6 text-usc-text-secondary text-sm">

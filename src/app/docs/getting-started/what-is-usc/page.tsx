@@ -3,7 +3,7 @@ import { PARTNERS, CHAINS } from '@/lib/constants';
 
 export const metadata = {
   title: 'What is Classic USD?',
-  description: 'Learn about Classic USD ($USC) - the first fiat-backed stablecoin on Ethereum Classic.',
+  description: 'Learn about Classic USD ($USC) - the US dollar for Ethereum Classic.',
 };
 
 export default function WhatIsUSCPage() {
@@ -14,7 +14,7 @@ export default function WhatIsUSCPage() {
       </h1>
 
       <p className="text-usc-text-secondary text-lg mb-8">
-        Classic USD ($USC) is the first fiat-backed stablecoin on Ethereum Classic,
+        Classic USD ($USC) is the definitive stablecoin for Ethereum Classic,
         providing a stable, regulated bridge between traditional finance and the ETC ecosystem.
       </p>
 

@@ -67,7 +67,7 @@ export const PARTNERS = {
   whitebox: {
     name: 'White B0x',
     url: 'https://whiteb0x.com',
-    description: 'Development team - composable DeFi stack on Ethereum Classic',
+    description: 'Web3 Development Studio',
   },
 } as const;
 
@@ -76,11 +76,13 @@ export const INTEGRATIONS = {
   etcswapV2: {
     name: 'ETCswap V2',
     url: 'https://v2.etcswap.org',
+    logo: '/images/etcswapv2.svg',
     description: 'Trade USC on the leading ETC DEX',
   },
   etcswapV3: {
     name: 'ETCswap V3',
-    url: 'https://etcswap.org',
+    url: 'https://v3.etcswap.org',
+    logo: '/images/etcswapv3.svg',
     description: 'Advanced trading with concentrated liquidity',
   },
 } as const;
@@ -103,8 +105,9 @@ export const SOCIAL = {
 // Site Metadata
 export const SITE = {
   name: 'Classic USD',
-  title: 'Classic USD | The First Fiat-Backed Stablecoin on Ethereum Classic',
-  description: 'Classic USD (USC) is a US-regulated, fiat-backed stablecoin on Ethereum Classic. Backed by reserves, redeemable 1:1 for USD. Issued by Brale.',
+  title: 'Classic USD | The US Dollar for Ethereum Classic',
+  tagline: 'The US Dollar for Ethereum Classic',
+  description: 'Classic USD ($USC) is the definitive stablecoin for Ethereum Classic. US-regulated, fully backed, and redeemable 1:1 for USD. Issued by Brale.',
   url: 'https://classicusd.com',
   image: '/images/og-usc.png',
   version: '0.1.0',

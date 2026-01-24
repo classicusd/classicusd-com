@@ -83,7 +83,7 @@ export async function GET() {
             maxWidth: '900px',
           }}
         >
-          The First Fiat-Backed Stablecoin on Ethereum Classic
+          The US Dollar for Ethereum Classic
         </div>
 
         {/* Footer */}
