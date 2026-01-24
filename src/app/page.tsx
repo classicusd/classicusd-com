@@ -99,7 +99,7 @@ export default function Home() {
             variants={staggerItem}
           >
             <span className="text-usc-text">The </span>
-            <span className="text-gradient-usc">US Dollar</span>
+            <span className="text-gradient-usc">Fiat-Backed US Dollar</span>
             <span className="text-usc-text"> for Ethereum Classic</span>
           </motion.h1>
 
@@ -364,7 +364,7 @@ export default function Home() {
               </div>
               <div className="w-12 h-12 mb-4 rounded-xl bg-etc-green/20 flex items-center justify-center">
                 <svg className="w-6 h-6 text-etc-green" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L4 12l8 5 8-5-8-10zm0 15l-8-5 8 10 8-10-8 5z"/>
+                  <path d="M12 2L4 12l8 5 8-5-8-10zm0 15l-8-5 8 10 8-10-8 5z" />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-usc-text mb-2">{CHAINS.etc.name}</h3>
@@ -384,7 +384,7 @@ export default function Home() {
             >
               <div className="w-12 h-12 mb-4 rounded-xl bg-purple-500/20 flex items-center justify-center">
                 <svg className="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.5 7.5L12 4 6.5 7.5V14L12 17.5l5.5-3.5V7.5z"/>
+                  <path d="M17.5 7.5L12 4 6.5 7.5V14L12 17.5l5.5-3.5V7.5z" />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-usc-text mb-2">{CHAINS.polygon.name}</h3>
@@ -546,7 +546,7 @@ export default function Home() {
               <div className="flex items-start justify-between mb-6">
                 <div className="w-14 h-14 rounded-xl bg-etc-green/20 flex items-center justify-center">
                   <svg className="w-7 h-7 text-etc-green" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                   </svg>
                 </div>
                 <svg className="w-5 h-5 text-usc-text-muted group-hover:text-etc-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -578,7 +578,7 @@ export default function Home() {
               <div className="flex items-start justify-between mb-6">
                 <div className="w-14 h-14 rounded-xl bg-etc-green/20 flex items-center justify-center">
                   <svg className="w-7 h-7 text-etc-green" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                   </svg>
                 </div>
                 <svg className="w-5 h-5 text-usc-text-muted group-hover:text-etc-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1011,7 +1011,7 @@ export default function Home() {
             <div className="text-center md:text-left">
               <p className="text-usc-text font-bold text-lg mb-1">Classic USD</p>
               <p className="text-usc-text-muted text-sm">
-                The US Dollar for Ethereum Classic
+                The Fiat-Backed US Dollar for Ethereum Classic
               </p>
             </div>
             <div className="flex gap-6 text-usc-text-secondary text-sm">
@@ -1029,7 +1029,6 @@ export default function Home() {
           <div className="mt-8 pt-8 border-t border-usc-border text-center text-usc-text-muted text-xs">
             <p>
               Classic USD is issued by Brale Inc. NMLS #{PARTNERS.brale.nmls}.
-              Not FDIC insured. May lose value.
             </p>
           </div>
         </div>

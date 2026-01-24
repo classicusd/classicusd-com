@@ -46,13 +46,13 @@ export const CHAINS = {
 // Contract Links
 export const CONTRACT_LINKS = {
   etc: {
-    address: `${CHAINS.etc.explorer}/address/${USC_CONTRACT.etc}`,
+    address: `${CHAINS.etc.explorer}/token/${USC_CONTRACT.etc}`,
   },
   polygon: {
-    address: `${CHAINS.polygon.explorer}/address/${USC_CONTRACT.polygon}`,
+    address: `${CHAINS.polygon.explorer}/token/${USC_CONTRACT.polygon}`,
   },
   mordor: {
-    address: `${CHAINS.mordor.explorer}/address/${USC_CONTRACT.mordor}`,
+    address: `${CHAINS.mordor.explorer}/token/${USC_CONTRACT.mordor}`,
   },
 } as const;
 
@@ -77,7 +77,7 @@ export const INTEGRATIONS = {
     name: 'ETCswap V2',
     url: 'https://v2.etcswap.org',
     logo: '/images/etcswapv2.svg',
-    description: 'Trade USC on the leading ETC DEX',
+    description: 'Trade USC on the leading AMM DEX',
   },
   etcswapV3: {
     name: 'ETCswap V3',
@@ -93,25 +93,25 @@ export const LINKS = {
   braleApp: 'https://app.brale.xyz',
   braleDocs: 'https://docs.brale.xyz',
   ethereumClassic: 'https://ethereumclassic.com',
-  blockscout: 'https://etc.blockscout.com',
+  blockscout: 'https://etc.blockscout.com/token/0xDE093684c796204224BC081f937aa059D903c52a',
 } as const;
 
 // Social Links
 export const SOCIAL = {
-  twitter: 'https://twitter.com/classicusd',
-  ethereumClassic: 'https://twitter.com/eth_classic',
+  twitter: 'https://twitter.com/classic_usd',
+  ethereumClassic: 'https://twitter.com/ETC_Network',
 } as const;
 
 // Site Metadata
 export const SITE = {
   name: 'Classic USD',
-  title: 'Classic USD | The US Dollar for Ethereum Classic',
-  tagline: 'The US Dollar for Ethereum Classic',
+  title: 'Classic USD | The Fiat-Backed US Dollar for Ethereum Classic',
+  tagline: 'The Fiat-Backed US Dollar for Ethereum Classic',
   description: 'Classic USD ($USC) is the definitive stablecoin for Ethereum Classic. US-regulated, fully backed, and redeemable 1:1 for USD. Issued by Brale.',
   url: 'https://classicusd.com',
   image: '/images/og-usc.png',
   version: '0.1.0',
-  twitterHandle: '@classicusd',
+  twitterHandle: '@classic_usd',
 } as const;
 
 // SEO Keywords organized by category

@@ -1,7 +1,7 @@
 {
   "name": "Classic USD",
   "short_name": "USC",
-  "description": "The US Dollar for Ethereum Classic",
+  "description": "The Fiat-Backed US Dollar for Ethereum Classic",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#121412",
