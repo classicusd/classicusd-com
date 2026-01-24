@@ -7,7 +7,9 @@ import { Button } from '@/components/ui';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { PriceDisplay } from '@/components/PriceDisplay';
 import { FAQAccordion } from '@/components/FAQAccordion';
-import { fadeInUp, staggerContainer, staggerItem, viewportSettings } from '@/lib/animations';
+import { FloatingCoin } from '@/components/FloatingCoin';
+import { FlowDiagram } from '@/components/FlowDiagram';
+import { fadeInUp, staggerContainer, staggerItem, viewportSettings, cardElevate } from '@/lib/animations';
 import { PARTNERS, LINKS, INTEGRATIONS, CHAINS } from '@/lib/constants';
 
 const faqItems = [
@@ -77,6 +79,24 @@ export default function Home() {
       </nav>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
+        {/* Floating Coin - positioned absolutely */}
+        <motion.div
+          className="absolute top-32 right-[10%] hidden lg:block"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+        >
+          <FloatingCoin size={140} />
+        </motion.div>
+        <motion.div
+          className="absolute bottom-32 left-[8%] hidden lg:block"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.7, duration: 0.8, ease: 'easeOut' }}
+        >
+          <FloatingCoin size={100} />
+        </motion.div>
+
         <motion.div
           className="max-w-4xl mx-auto text-center"
           initial="hidden"
@@ -99,7 +119,7 @@ export default function Home() {
             variants={staggerItem}
           >
             <span className="text-usc-text">The </span>
-            <span className="text-gradient-usc">Fiat-Backed US Dollar</span>
+            <span className="text-gradient-usc">US Dollar</span>
             <span className="text-usc-text"> for Ethereum Classic</span>
           </motion.h1>
 
@@ -193,14 +213,20 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Stability */}
             <motion.div
-              className="p-8 rounded-2xl panel"
+              className="p-8 rounded-2xl panel cursor-default"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
-              <div className="w-14 h-14 mb-6 rounded-xl bg-usc-green/10 flex items-center justify-center">
+              <motion.div
+                className="w-14 h-14 mb-6 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-7 h-7 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-xl font-bold text-usc-text mb-3">Stability & Backing</h3>
               <p className="text-usc-text-secondary">
                 Backed by fiat reserves with automated reserve management. Brale provides third-party attestations to ensure US-regulated backing.
@@ -209,14 +235,20 @@ export default function Home() {
 
             {/* Interoperability */}
             <motion.div
-              className="p-8 rounded-2xl panel"
+              className="p-8 rounded-2xl panel cursor-default"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
-              <div className="w-14 h-14 mb-6 rounded-xl bg-usc-green/10 flex items-center justify-center">
+              <motion.div
+                className="w-14 h-14 mb-6 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-7 h-7 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-xl font-bold text-usc-text mb-3">Interoperability</h3>
               <p className="text-usc-text-secondary">
                 Redeemable 1:1 for USD, USDC, or USDP. Classic USD bridges Ethereum Classic to the greater EVM ecosystem.
@@ -225,14 +257,20 @@ export default function Home() {
 
             {/* DeFi Ready */}
             <motion.div
-              className="p-8 rounded-2xl panel"
+              className="p-8 rounded-2xl panel cursor-default"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
-              <div className="w-14 h-14 mb-6 rounded-xl bg-usc-green/10 flex items-center justify-center">
+              <motion.div
+                className="w-14 h-14 mb-6 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-7 h-7 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-xl font-bold text-usc-text mb-3">DeFi Ready</h3>
               <p className="text-usc-text-secondary">
                 Integrated with ETCswap V2 and V3. Essential infrastructure for composable DeFi on Ethereum Classic.
@@ -354,8 +392,10 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {/* Ethereum Classic - Primary */}
             <motion.div
-              className="p-6 rounded-2xl panel-strong relative overflow-hidden"
+              className="p-6 rounded-2xl panel-strong relative overflow-hidden cursor-default"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <div className="absolute top-4 right-4">
                 <span className="px-2 py-1 text-xs font-medium bg-usc-green text-[#121412] rounded">
@@ -379,8 +419,10 @@ export default function Home() {
 
             {/* Polygon */}
             <motion.div
-              className="p-6 rounded-2xl panel"
+              className="p-6 rounded-2xl panel cursor-default"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <div className="w-12 h-12 mb-4 rounded-xl bg-purple-500/20 flex items-center justify-center">
                 <svg className="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="currentColor">
@@ -399,8 +441,10 @@ export default function Home() {
 
             {/* Mordor Testnet */}
             <motion.div
-              className="p-6 rounded-2xl panel"
+              className="p-6 rounded-2xl panel cursor-default"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <div className="w-12 h-12 mb-4 rounded-xl bg-orange-500/20 flex items-center justify-center">
                 <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -542,6 +586,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className="p-8 rounded-2xl panel hover:border-etc-green transition-colors group"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <div className="flex items-start justify-between mb-6">
                 <div className="w-14 h-14 rounded-xl bg-etc-green/20 flex items-center justify-center">
@@ -574,6 +620,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className="p-8 rounded-2xl panel hover:border-etc-green transition-colors group"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <div className="flex items-start justify-between mb-6">
                 <div className="w-14 h-14 rounded-xl bg-etc-green/20 flex items-center justify-center">
@@ -642,6 +690,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className="p-8 rounded-2xl panel hover:border-usc-green transition-colors"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <h3 className="text-2xl font-bold text-usc-text mb-2">Brale</h3>
               <p className="text-usc-green text-sm mb-4">NMLS #{PARTNERS.brale.nmls}</p>
@@ -657,6 +707,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className="p-8 rounded-2xl panel hover:border-usc-green transition-colors"
               variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
             >
               <h3 className="text-2xl font-bold text-usc-text mb-2">White B0x</h3>
               <p className="text-usc-green text-sm mb-4">Development Partner</p>
@@ -686,40 +738,40 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Step 1: Mint */}
-            <motion.div className="text-center" variants={staggerItem}>
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-usc-green/20 flex items-center justify-center">
-                <span className="text-2xl font-bold text-usc-green">1</span>
-              </div>
-              <h3 className="text-xl font-bold text-usc-text mb-3">Deposit USD</h3>
-              <p className="text-usc-text-secondary">
-                Send USD to Brale via bank transfer or wire. Your funds are held in segregated reserve accounts.
-              </p>
-            </motion.div>
-
-            {/* Step 2: Receive */}
-            <motion.div className="text-center" variants={staggerItem}>
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-usc-green/20 flex items-center justify-center">
-                <span className="text-2xl font-bold text-usc-green">2</span>
-              </div>
-              <h3 className="text-xl font-bold text-usc-text mb-3">Receive $USC</h3>
-              <p className="text-usc-text-secondary">
-                $USC tokens are minted 1:1 and sent to your wallet on Ethereum Classic or Polygon.
-              </p>
-            </motion.div>
-
-            {/* Step 3: Use or Redeem */}
-            <motion.div className="text-center" variants={staggerItem}>
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-usc-green/20 flex items-center justify-center">
-                <span className="text-2xl font-bold text-usc-green">3</span>
-              </div>
-              <h3 className="text-xl font-bold text-usc-text mb-3">Use or Redeem</h3>
-              <p className="text-usc-text-secondary">
-                Trade on DEXs, use in DeFi, or redeem back to USD, USDC, or USDP at any time.
-              </p>
-            </motion.div>
-          </div>
+          <FlowDiagram
+            steps={[
+              {
+                number: 1,
+                title: 'Deposit USD',
+                description: 'Send USD to Brale via bank transfer or wire. Your funds are held in segregated reserve accounts.',
+                icon: (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ),
+              },
+              {
+                number: 2,
+                title: 'Receive $USC',
+                description: '$USC tokens are minted 1:1 and sent to your wallet on Ethereum Classic or Polygon.',
+                icon: (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                ),
+              },
+              {
+                number: 3,
+                title: 'Use or Redeem',
+                description: 'Trade on DEXs, use in DeFi, or redeem back to USD, USDC, or USDP at any time.',
+                icon: (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                ),
+              },
+            ]}
+          />
 
           <motion.div className="mt-12 text-center" variants={fadeInUp}>
             <Button href={LINKS.braleDocs} variant="outline" external>
@@ -885,12 +937,21 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Smart Contract */}
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <div className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center">
+            <motion.div
+              className="p-6 rounded-2xl panel cursor-default"
+              variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
+            >
+              <motion.div
+                className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-6 h-6 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-lg font-bold text-usc-text mb-2">ERC-20 Standard</h3>
               <p className="text-usc-text-secondary text-sm">
                 $USC follows the battle-tested ERC-20 token standard, ensuring compatibility with wallets, exchanges, and DeFi protocols.
@@ -898,12 +959,21 @@ export default function Home() {
             </motion.div>
 
             {/* Upgradeable Proxy */}
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <div className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center">
+            <motion.div
+              className="p-6 rounded-2xl panel cursor-default"
+              variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
+            >
+              <motion.div
+                className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-6 h-6 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-lg font-bold text-usc-text mb-2">Upgradeable Design</h3>
               <p className="text-usc-text-secondary text-sm">
                 Contract uses a transparent proxy pattern, allowing security patches while preserving token balances and approvals.
@@ -911,12 +981,21 @@ export default function Home() {
             </motion.div>
 
             {/* Multi-Sig */}
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <div className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center">
+            <motion.div
+              className="p-6 rounded-2xl panel cursor-default"
+              variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
+            >
+              <motion.div
+                className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-6 h-6 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-lg font-bold text-usc-text mb-2">Multi-Signature Control</h3>
               <p className="text-usc-text-secondary text-sm">
                 Admin operations require multiple signatures, preventing single points of failure and unauthorized actions.
@@ -924,12 +1003,21 @@ export default function Home() {
             </motion.div>
 
             {/* Custody */}
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <div className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center">
+            <motion.div
+              className="p-6 rounded-2xl panel cursor-default"
+              variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
+            >
+              <motion.div
+                className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-6 h-6 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-lg font-bold text-usc-text mb-2">Institutional Custody</h3>
               <p className="text-usc-text-secondary text-sm">
                 USD reserves held at regulated US banks with FDIC insurance coverage. Customer funds never commingled with operational capital.
@@ -937,12 +1025,21 @@ export default function Home() {
             </motion.div>
 
             {/* Monitoring */}
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <div className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center">
+            <motion.div
+              className="p-6 rounded-2xl panel cursor-default"
+              variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
+            >
+              <motion.div
+                className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-6 h-6 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-lg font-bold text-usc-text mb-2">24/7 Monitoring</h3>
               <p className="text-usc-text-secondary text-sm">
                 Automated systems monitor contract activity, reserve levels, and network health around the clock.
@@ -950,12 +1047,21 @@ export default function Home() {
             </motion.div>
 
             {/* Incident Response */}
-            <motion.div className="p-6 rounded-2xl panel" variants={staggerItem}>
-              <div className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center">
+            <motion.div
+              className="p-6 rounded-2xl panel cursor-default"
+              variants={staggerItem}
+              whileHover={cardElevate.hover}
+              initial={cardElevate.rest}
+            >
+              <motion.div
+                className="w-12 h-12 mb-4 rounded-xl bg-usc-green/10 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <svg className="w-6 h-6 text-usc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
-              </div>
+              </motion.div>
               <h3 className="text-lg font-bold text-usc-text mb-2">Incident Response</h3>
               <p className="text-usc-text-secondary text-sm">
                 Established procedures for security incidents including pause functionality and coordinated disclosure protocols.

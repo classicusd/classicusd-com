@@ -191,3 +191,95 @@ export const shimmer: Variants = {
     },
   },
 };
+
+// Glow pulse with USC green color
+export const glowPulseGreen: Variants = {
+  animate: {
+    boxShadow: [
+      '0 0 0 0 rgba(51, 253, 153, 0)',
+      '0 0 20px 10px rgba(51, 253, 153, 0.3)',
+      '0 0 0 0 rgba(51, 253, 153, 0)',
+    ],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+// Icon entrance animation with spring
+export const iconReveal: Variants = {
+  hidden: { opacity: 0, scale: 0.5 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 200, damping: 15 },
+  },
+};
+
+// Card elevation on hover with glow
+export const cardElevate = {
+  rest: {
+    scale: 1,
+    y: 0,
+    boxShadow: '0 0 0 rgba(51, 253, 153, 0)',
+    transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+  hover: {
+    scale: 1.02,
+    y: -4,
+    boxShadow: '0 10px 40px rgba(51, 253, 153, 0.15)',
+    transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+};
+
+// Icon pulse animation for feature icons
+export const iconPulse: Variants = {
+  initial: { scale: 1 },
+  animate: {
+    scale: [1, 1.05, 1],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+// Draw line animation for SVG paths
+export const drawLine: Variants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: {
+    pathLength: 1,
+    opacity: 1,
+    transition: {
+      pathLength: { duration: 1, ease: 'easeInOut' },
+      opacity: { duration: 0.3 },
+    },
+  },
+};
+
+// Stagger container with faster timing for icons
+export const iconStaggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+// Progress bar fill animation
+export const progressFill: Variants = {
+  hidden: { scaleX: 0 },
+  visible: {
+    scaleX: 1,
+    transition: {
+      duration: 1.5,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
