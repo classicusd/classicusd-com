@@ -83,7 +83,7 @@ export const INTEGRATIONS = {
     name: 'ETCswap V3',
     url: 'https://v3.etcswap.org',
     logo: '/images/etcswapv3.svg',
-    description: 'Advanced trading with concentrated liquidity',
+    description: 'The only advanced trading DEX with concentrated liquidity on ETC',
   },
 } as const;
 

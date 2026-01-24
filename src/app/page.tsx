@@ -652,10 +652,6 @@ export default function Home() {
             className="mt-12 text-center"
             variants={fadeInUp}
           >
-            <p className="text-usc-text-muted text-sm mb-4">
-              Classic USD was required for ETCswap V3 deployment — the first concentrated
-              liquidity DEX on Ethereum Classic.
-            </p>
           </motion.div>
         </motion.div>
       </section>
