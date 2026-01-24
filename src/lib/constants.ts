@@ -77,13 +77,13 @@ export const INTEGRATIONS = {
     name: 'ETCswap V2',
     url: 'https://v2.etcswap.org',
     logo: '/images/etcswapv2.svg',
-    description: 'Trade USC on the leading AMM DEX',
+    description: 'The simple AMM DEX on ETC',
   },
   etcswapV3: {
     name: 'ETCswap V3',
     url: 'https://v3.etcswap.org',
     logo: '/images/etcswapv3.svg',
-    description: 'The only advanced trading DEX with concentrated liquidity on ETC',
+    description: 'The only concentrated liquidity CLMM DEX on ETC',
   },
 } as const;
 
