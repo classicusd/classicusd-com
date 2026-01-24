@@ -77,7 +77,3 @@ pnpm dev
 ```bash
 pnpm build
 ```
-
-## License
-
-MIT
