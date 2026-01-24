@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { SITE, SEO_KEYWORDS, PARTNERS } from '@/lib/constants';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { BackgroundSystem } from '@/components/BackgroundSystem';
+import { Analytics } from '@/components/Analytics';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -54,7 +56,7 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     images: [
       {
-        url: SITE.image,
+        url: '/images/og-usc.png',
         width: 1200,
         height: 630,
         alt: 'Classic USD - The First Fiat-Backed Stablecoin on Ethereum Classic',
@@ -73,7 +75,7 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
     images: {
-      url: SITE.image,
+      url: '/images/og-usc.png',
       alt: 'Classic USD - The First Fiat-Backed Stablecoin on Ethereum Classic',
     },
   },
@@ -91,14 +93,10 @@ export const metadata: Metadata = {
     },
   },
 
-  // Icons
-  icons: {
-    icon: [
-      { url: '/images/favicon.ico', sizes: 'any' },
-      { url: '/images/usc-icon.svg', type: 'image/svg+xml' },
-    ],
-    apple: '/images/usc-apple-icon.png',
-  },
+  // Icons - auto-generated from icon.tsx and apple-icon.tsx
+
+  // Manifest
+  manifest: '/manifest.json',
 
   // App metadata
   applicationName: 'Classic USD',
@@ -124,10 +122,82 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <BackgroundSystem />
-        <div className="relative z-10">{children}</div>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark`} suppressHydrationWarning>
+      <head>
+        {/* Prevent flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('usc-theme');
+                  if (theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': `${SITE.url}/#organization`,
+                  name: 'Classic USD',
+                  url: SITE.url,
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: `${SITE.url}/images/usc-icon.svg`,
+                  },
+                  description: SITE.description,
+                  sameAs: [
+                    'https://twitter.com/classicusd',
+                  ],
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': `${SITE.url}/#website`,
+                  url: SITE.url,
+                  name: SITE.name,
+                  publisher: {
+                    '@id': `${SITE.url}/#organization`,
+                  },
+                },
+                {
+                  '@type': 'FinancialProduct',
+                  '@id': `${SITE.url}/#product`,
+                  name: 'Classic USD (USC)',
+                  description: 'A fiat-backed stablecoin on Ethereum Classic, redeemable 1:1 for US dollars.',
+                  provider: {
+                    '@type': 'Organization',
+                    name: 'Brale Inc.',
+                    url: PARTNERS.brale.url,
+                  },
+                  category: 'Stablecoin',
+                  offers: {
+                    '@type': 'Offer',
+                    price: '1.00',
+                    priceCurrency: 'USD',
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </head>
+      <body className="min-h-screen antialiased">
+        <ThemeProvider>
+          <BackgroundSystem />
+          <div className="relative z-10">{children}</div>
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

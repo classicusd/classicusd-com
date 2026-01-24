@@ -23,27 +23,16 @@ export function Button({
   external = false,
 }: ButtonProps) {
   const baseStyles = `
-    inline-flex items-center justify-center
+    btn inline-flex items-center justify-center
     font-semibold uppercase tracking-wide
     rounded-lg transition-colors
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-usc-gold focus-visible:ring-offset-2 focus-visible:ring-offset-usc-black
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-usc-green focus-visible:ring-offset-2 focus-visible:ring-offset-usc-bg
   `;
 
   const variants = {
-    primary: `
-      bg-usc-gold !text-black
-      hover:bg-usc-gold-light
-      border-2 border-usc-gold hover:border-usc-gold-light
-    `,
-    outline: `
-      bg-transparent text-usc-gold
-      border-2 border-usc-gold
-      hover:bg-usc-gold hover:text-usc-black
-    `,
-    ghost: `
-      bg-transparent text-usc-gold
-      hover:bg-usc-gray
-    `,
+    primary: 'btn-primary',
+    outline: 'btn-outline',
+    ghost: 'btn-ghost',
   };
 
   const sizes = {

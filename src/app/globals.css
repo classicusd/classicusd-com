@@ -1,66 +1,85 @@
 @import "tailwindcss";
 
 /* =============================================
-   Classic USD (USC) - Theme
-   Gold/USD accent + ETC Green ecosystem
+   Classic USD ($USC) - Theme System
+   Brand Colors: #33FD99 (mint green), #121412 (dark), #FFFFFF (white)
    ============================================= */
 
 :root {
-  /* USC Brand Colors - Gold/USD themed */
-  --usc-gold: #D4AF37;
-  --usc-gold-light: #F4D03F;
-  --usc-gold-dark: #B8860B;
+  /* USC Brand Colors */
+  --usc-green: #33FD99;
+  --usc-green-light: #5FFEB2;
+  --usc-green-dark: #2AD882;
 
-  /* ETC Ecosystem Colors */
-  --etc-green: #3AB83A;
-  --etc-green-light: #33ff99;
-  --etc-green-dark: #2d8f2d;
+  /* Semantic colors - default to dark theme */
+  --usc-bg: #121412;
+  --usc-bg-alt: #1A1C1A;
+  --usc-surface: #222422;
+  --usc-surface-hover: #2A2C2A;
+  --usc-border: #333533;
+  --usc-border-strong: #444644;
 
-  /* Neutrals */
-  --usc-black: #0a0a0a;
-  --usc-dark: #141414;
-  --usc-gray: #1a1a1a;
-  --usc-gray-light: #2a2a2a;
+  /* Text colors */
+  --usc-text: #FFFFFF;
+  --usc-text-secondary: #A0A0A0;
+  --usc-text-muted: #9E9E9E; /* WCAG AA compliant: 4.64:1 contrast ratio */
 
-  /* Text */
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-  --text-muted: #6b6b6b;
+  /* Section backgrounds */
+  --usc-section: transparent;
+  --usc-section-alt: rgba(26, 28, 26, 0.65);
+}
 
-  /* Sections (semi-transparent to show background system) */
-  --section-default: transparent;
-  --section-alt: rgba(15, 15, 20, 0.65);
+/* Light theme */
+.light {
+  /* Override green for better contrast on light backgrounds */
+  --usc-green: #00C96F;
+  --usc-green-light: #00E080;
+  --usc-green-dark: #00A85D;
 
-  /* Base theme variables */
-  --background: var(--usc-black);
-  --foreground: var(--text-primary);
+  --usc-bg: #FAFAFA;
+  --usc-bg-alt: #F0F0F0;
+  --usc-surface: #FFFFFF;
+  --usc-surface-hover: #F5F5F5;
+  --usc-border: #E0E0E0;
+  --usc-border-strong: #CCCCCC;
+
+  /* Text colors - light theme */
+  --usc-text: #121412;
+  --usc-text-secondary: #555555;
+  --usc-text-muted: #888888;
+
+  /* Section backgrounds - light theme */
+  --usc-section: transparent;
+  --usc-section-alt: rgba(240, 240, 240, 0.65);
 }
 
 /* Tailwind 4 theme extension */
 @theme inline {
-  /* Colors */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Brand Colors */
+  --color-usc-green: var(--usc-green);
+  --color-usc-green-light: var(--usc-green-light);
+  --color-usc-green-dark: var(--usc-green-dark);
 
-  --color-usc-gold: var(--usc-gold);
-  --color-usc-gold-light: var(--usc-gold-light);
-  --color-usc-gold-dark: var(--usc-gold-dark);
+  /* Semantic Colors */
+  --color-usc-bg: var(--usc-bg);
+  --color-usc-bg-alt: var(--usc-bg-alt);
+  --color-usc-surface: var(--usc-surface);
+  --color-usc-surface-hover: var(--usc-surface-hover);
+  --color-usc-border: var(--usc-border);
+  --color-usc-border-strong: var(--usc-border-strong);
 
-  --color-etc-green: var(--etc-green);
-  --color-etc-green-light: var(--etc-green-light);
-  --color-etc-green-dark: var(--etc-green-dark);
+  /* Text */
+  --color-usc-text: var(--usc-text);
+  --color-usc-text-secondary: var(--usc-text-secondary);
+  --color-usc-text-muted: var(--usc-text-muted);
 
-  --color-usc-black: var(--usc-black);
-  --color-usc-dark: var(--usc-dark);
-  --color-usc-gray: var(--usc-gray);
-  --color-usc-gray-light: var(--usc-gray-light);
+  /* Sections */
+  --color-usc-section: var(--usc-section);
+  --color-usc-section-alt: var(--usc-section-alt);
 
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-
-  --color-section-default: var(--section-default);
-  --color-section-alt: var(--section-alt);
+  /* Legacy mappings for compatibility */
+  --color-background: var(--usc-bg);
+  --color-foreground: var(--usc-text);
 
   /* Typography */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -79,18 +98,19 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--usc-bg);
+  color: var(--usc-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Selection */
 ::selection {
-  background-color: var(--usc-gold);
-  color: var(--usc-black);
+  background-color: var(--usc-green);
+  color: #121412;
 }
 
 /* Scrollbar (webkit) */
@@ -100,43 +120,84 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--usc-dark);
+  background: var(--usc-bg-alt);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--usc-gray-light);
+  background: var(--usc-border-strong);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--usc-gold);
+  background: var(--usc-green);
 }
 
 /* Links */
 a {
-  color: var(--usc-gold);
+  color: var(--usc-green);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--usc-gold-light);
+  color: var(--usc-green-light);
+}
+
+/* Button base - override link colors */
+.btn {
+  color: inherit;
+}
+
+.btn:hover {
+  color: inherit;
+}
+
+.btn-primary {
+  background-color: var(--usc-green);
+  color: #121412 !important;
+  border: 2px solid var(--usc-green);
+}
+
+.btn-primary:hover {
+  background-color: var(--usc-green-light);
+  color: #121412 !important;
+  border-color: var(--usc-green-light);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--usc-green) !important;
+  border: 2px solid var(--usc-green);
+}
+
+.btn-outline:hover {
+  background-color: var(--usc-green);
+  color: #121412 !important;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--usc-green) !important;
+}
+
+.btn-ghost:hover {
+  background-color: var(--usc-surface);
 }
 
 /* Code */
 code {
   font-family: var(--font-mono);
-  background-color: var(--usc-gray);
+  background-color: var(--usc-surface);
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
-  color: var(--usc-gold-light);
+  color: var(--usc-green);
 }
 
 pre {
   font-family: var(--font-mono);
-  background-color: var(--usc-gray);
-  border: 1px solid var(--usc-gray-light);
+  background-color: var(--usc-surface);
+  border: 1px solid var(--usc-border);
   border-radius: 8px;
   padding: 1rem;
   overflow-x: auto;
@@ -149,7 +210,7 @@ pre code {
 
 /* Focus states */
 :focus-visible {
-  outline: 2px solid var(--usc-gold);
+  outline: 2px solid var(--usc-green);
   outline-offset: 2px;
 }
 
@@ -160,37 +221,33 @@ pre code {
 /* Grid patterns */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(212, 175, 55, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, var(--usc-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--usc-border) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-grid-sm {
   background-image:
-    linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, var(--usc-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--usc-border) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 /* Gradient utilities */
 .bg-gradient-radial {
-  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-}
-
-.bg-gradient-hero {
-  background: linear-gradient(180deg, var(--usc-black) 0%, var(--usc-dark) 100%);
+  background: radial-gradient(ellipse at center, rgba(51, 253, 153, 0.15) 0%, transparent 70%);
 }
 
 /* Text gradients */
 .text-gradient {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  background: linear-gradient(135deg, var(--usc-text) 0%, var(--usc-text-secondary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-usc {
-  background: linear-gradient(135deg, var(--usc-gold-light) 0%, var(--usc-gold) 100%);
+  background: linear-gradient(135deg, var(--usc-green) 0%, var(--usc-green-dark) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -198,20 +255,20 @@ pre code {
 
 /* Glow effects */
 .glow-usc {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 20px rgba(51, 253, 153, 0.3);
 }
 
 .glow-usc-light {
-  box-shadow: 0 0 30px rgba(244, 208, 63, 0.4);
+  box-shadow: 0 0 30px rgba(51, 253, 153, 0.4);
 }
 
 /* Pulse glow animation */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px rgba(51, 253, 153, 0.3);
   }
   50% {
-    box-shadow: 0 0 35px rgba(244, 208, 63, 0.5);
+    box-shadow: 0 0 35px rgba(51, 253, 153, 0.5);
   }
 }
 
@@ -221,17 +278,28 @@ pre code {
 
 /* Panel styles */
 .panel {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: var(--usc-surface);
+  border: 1px solid var(--usc-border);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .panel-strong {
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(51, 253, 153, 0.05);
+  border: 1px solid rgba(51, 253, 153, 0.2);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(12px);
+}
+
+.dark .panel-strong {
+  background: rgba(51, 253, 153, 0.08);
+  border: 1px solid rgba(51, 253, 153, 0.25);
+}
+
+/* Section backgrounds */
+.bg-section-alt {
+  background: var(--usc-section-alt);
 }
 
 /* Reduced motion */

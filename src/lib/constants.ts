@@ -11,11 +11,11 @@ export const USC_TOKEN = {
   coingeckoId: 'classic-usd',
 } as const;
 
-// Contract Addresses (update with actual addresses)
+// Contract Addresses
 export const USC_CONTRACT = {
-  etc: '0x0000000000000000000000000000000000000000', // TODO: Add ETC mainnet address
-  polygon: '0x0000000000000000000000000000000000000000', // TODO: Add Polygon address
-  mordor: '0x0000000000000000000000000000000000000000', // TODO: Add Mordor testnet address
+  etc: '0xDE093684c796204224BC081f937aa059D903c52a',
+  polygon: '0x131409b31bf446737dd04353d43dacada544b6fa',
+  mordor: '0xDE093684c796204224BC081f937aa059D903c52a',
 } as const;
 
 // Chain Configuration

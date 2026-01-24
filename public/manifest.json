@@ -1,0 +1,19 @@
+{
+  "name": "Classic USD",
+  "short_name": "USC",
+  "description": "The first fiat-backed stablecoin on Ethereum Classic",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121412",
+  "theme_color": "#33FD99",
+  "icons": [
+    {
+      "src": "/images/usc-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "cryptocurrency"],
+  "orientation": "portrait-primary"
+}

@@ -34,10 +34,10 @@ export function Card({
           />
         </div>
       )}
-      <h4 className="text-xl font-bold text-white text-center mb-2">
+      <h4 className="text-xl font-bold text-usc-text text-center mb-2">
         {title}
       </h4>
-      <p className="text-text-secondary text-center text-sm">
+      <p className="text-usc-text-secondary text-center text-sm">
         {description}
       </p>
     </>
@@ -45,8 +45,8 @@ export function Card({
 
   const cardStyles = `
     block p-6 rounded-xl
-    bg-usc-gray border border-usc-gray-light
-    hover:border-usc-gold
+    bg-usc-surface border border-usc-border
+    hover:border-usc-green
     transition-colors
     ${className}
   `;
@@ -97,8 +97,8 @@ export function FeatureCard({
     <motion.div
       className={`
         p-6 rounded-xl
-        bg-usc-gray/50 border border-usc-gray-light
-        hover:border-usc-gold/50
+        bg-usc-surface/50 border border-usc-border
+        hover:border-usc-green/50
         transition-colors
         ${className}
       `}
@@ -106,13 +106,13 @@ export function FeatureCard({
       initial="rest"
       whileHover="hover"
     >
-      <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-usc-gold/10 text-usc-gold">
+      <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-usc-green/10 text-usc-green">
         {icon}
       </div>
-      <h4 className="text-lg font-semibold text-white mb-2">
+      <h4 className="text-lg font-semibold text-usc-text mb-2">
         {title}
       </h4>
-      <p className="text-text-secondary text-sm">
+      <p className="text-usc-text-secondary text-sm">
         {description}
       </p>
     </motion.div>
@@ -140,7 +140,7 @@ export function PartnerCard({
       rel="noopener noreferrer"
       className={`
         flex flex-col items-center p-4 rounded-lg
-        bg-usc-gray hover:bg-usc-gray-light
+        bg-usc-surface hover:bg-usc-surface-hover
         transition-colors
         ${className}
       `}
@@ -156,7 +156,7 @@ export function PartnerCard({
           className="object-contain max-h-12"
         />
       </div>
-      <span className="text-sm text-text-secondary text-center">
+      <span className="text-sm text-usc-text-secondary text-center">
         {name}
       </span>
     </motion.a>

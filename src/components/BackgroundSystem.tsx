@@ -1,331 +1,268 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
+import { useState } from 'react';
+
+// Seeded pseudo-random number generator for consistent SSR/client rendering
+function seededRandom(seed: number): () => number {
+  return function () {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+}
 
 /**
- * BackgroundSystem - Dynamic themed background with motion
- * Themed for Classic USD (USC) - Gold/USD aesthetic
+ * BackgroundSystem - Abstract particle wave pattern
+ * Themed for Classic USD ($USC) - signaling liquidity and capital movement
  *
  * Visual concept:
- * - Dark base with subtle gold accents
- * - Flowing lines representing value transfer
- * - Network hubs representing stability/reserves
+ * - Abstract particle waves representing value flow
+ * - Mint green (#33FD99) accents on dark/light backgrounds
  * - Clean, professional financial aesthetic
+ * - Supports light and dark themes
  */
 
-type Lane = {
-  top: string;
-  left: string;
-  len: string;
-  angle: number;
-  dur: number;
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
   delay: number;
-  reverse: boolean;
-};
+  amplitude: number;
+}
 
-type Hub = {
-  top: string;
-  left: string;
-  dur: number;
+interface Wave {
+  id: number;
+  y: number;
+  opacity: number;
+  duration: number;
   delay: number;
-};
+}
 
 export function BackgroundSystem() {
   const reduceMotion = useReducedMotion();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
-  // Horizontal data lanes (value flow visualization)
-  const lanes: readonly Lane[] = [
-    // Left side - representing incoming value
-    { top: '15%', left: '-20%', len: '38%', angle: -4, dur: 10.5, delay: 0.0, reverse: false },
-    { top: '32%', left: '-24%', len: '42%', angle: 6, dur: 13.2, delay: 1.2, reverse: false },
-    { top: '48%', left: '-18%', len: '36%', angle: -8, dur: 11.8, delay: 0.6, reverse: false },
-    { top: '65%', left: '-22%', len: '40%', angle: 4, dur: 14.5, delay: 2.1, reverse: false },
-    { top: '78%', left: '-26%', len: '44%', angle: -3, dur: 12.4, delay: 1.5, reverse: false },
+  // Generate particles for the wave effect using seeded random for consistency
+  const [particles] = useState<Particle[]>(() => {
+    const random = seededRandom(12345);
+    const items: Particle[] = [];
+    for (let i = 0; i < 50; i++) {
+      items.push({
+        id: i,
+        x: random() * 100,
+        y: 20 + random() * 60, // Concentrated in middle band
+        size: 2 + random() * 4,
+        duration: 8 + random() * 8,
+        delay: random() * 5,
+        amplitude: 10 + random() * 20,
+      });
+    }
+    return items;
+  });
 
-    // Right side - representing outgoing (reverse direction)
-    { top: '22%', left: '60%', len: '42%', angle: 5, dur: 12.8, delay: 0.8, reverse: true },
-    { top: '42%', left: '56%', len: '48%', angle: -6, dur: 15.2, delay: 1.8, reverse: true },
-    { top: '62%', left: '64%', len: '38%', angle: 3, dur: 13.6, delay: 2.8, reverse: true },
-    { top: '82%', left: '58%', len: '44%', angle: -4, dur: 14.0, delay: 0.4, reverse: true },
-  ] as const;
+  // Generate horizontal wave lines
+  const [waves] = useState<Wave[]>(() => {
+    const items: Wave[] = [];
+    for (let i = 0; i < 5; i++) {
+      items.push({
+        id: i,
+        y: 25 + i * 12,
+        opacity: 0.03 + (i % 2) * 0.02,
+        duration: 15 + i * 3,
+        delay: i * 0.5,
+      });
+    }
+    return items;
+  });
 
-  // Network hubs (stability/reserve points)
-  const hubs: readonly Hub[] = [
-    { top: '20%', left: '25%', dur: 6.2, delay: 0.3 },
-    { top: '35%', left: '72%', dur: 7.4, delay: 1.0 },
-    { top: '55%', left: '30%', dur: 6.8, delay: 0.6 },
-    { top: '70%', left: '68%', dur: 7.8, delay: 1.8 },
-    { top: '45%', left: '50%', dur: 8.2, delay: 2.2 }, // Center hub - main point
-  ] as const;
+  // Theme-aware colors
+  const colors = {
+    bg: isDark ? '#121412' : '#FAFAFA',
+    particle: isDark ? 'rgba(51, 253, 153, 0.6)' : 'rgba(51, 253, 153, 0.8)',
+    particleGlow: isDark ? 'rgba(51, 253, 153, 0.3)' : 'rgba(51, 253, 153, 0.4)',
+    wave: isDark ? 'rgba(51, 253, 153, 0.08)' : 'rgba(51, 253, 153, 0.12)',
+    gradient1: isDark ? 'rgba(51, 253, 153, 0.06)' : 'rgba(51, 253, 153, 0.08)',
+    gradient2: isDark ? 'rgba(51, 253, 153, 0.04)' : 'rgba(51, 253, 153, 0.06)',
+    grid: isDark ? 'rgba(51, 253, 153, 0.03)' : 'rgba(51, 253, 153, 0.06)',
+    vignette: isDark ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.3)',
+  };
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden transition-colors duration-500"
+      style={{ backgroundColor: colors.bg }}
     >
-      {/* Base layer */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
-
-      {/* Atmosphere breathing - subtle gold glow */}
+      {/* Ambient gradient - top */}
       <motion.div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(1000px 600px at 20% 15%, rgba(212, 175, 55, 0.06), transparent 60%),
-            radial-gradient(800px 500px at 80% 20%, rgba(244, 208, 63, 0.04), transparent 55%),
-            radial-gradient(1100px 700px at 50% 85%, rgba(212, 175, 55, 0.08), transparent 65%),
-            radial-gradient(600px 400px at 15% 70%, rgba(244, 208, 63, 0.03), transparent 50%)
+            radial-gradient(800px 400px at 20% 10%, ${colors.gradient1}, transparent 60%),
+            radial-gradient(600px 300px at 80% 20%, ${colors.gradient2}, transparent 50%),
+            radial-gradient(1000px 500px at 50% 90%, ${colors.gradient1}, transparent 60%)
           `,
         }}
-        animate={reduceMotion ? undefined : { opacity: [0.5, 0.8, 0.5] }}
+        animate={reduceMotion ? undefined : { opacity: [0.6, 1, 0.6] }}
         transition={
           reduceMotion
             ? undefined
-            : { duration: 14, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 12, repeat: Infinity, ease: 'easeInOut' }
         }
       />
 
-      {/* Ambient dot lattice (slow drift) */}
-      <motion.div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(212, 175, 55, 0.25) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          maskImage:
-            'radial-gradient(ellipse at center, black 40%, transparent 75%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse at center, black 40%, transparent 75%)',
-        }}
-        animate={
-          reduceMotion
-            ? undefined
-            : {
-                backgroundPositionX: ['0px', '20px', '0px'],
-                backgroundPositionY: ['0px', '14px', '0px'],
-              }
-        }
-        transition={
-          reduceMotion
-            ? undefined
-            : { duration: 24, repeat: Infinity, ease: 'easeInOut' }
-        }
-      />
-
-      {/* Secondary parallax depth layer */}
-      <motion.div
-        className="absolute -inset-[12%] opacity-[0.04]"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(244, 208, 63, 0.30) 1px, transparent 1px)',
-          backgroundSize: '52px 52px',
-          filter: 'blur(0.5px)',
-          maskImage:
-            'radial-gradient(ellipse at center, black 35%, transparent 72%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse at center, black 35%, transparent 72%)',
-        }}
-        animate={
-          reduceMotion
-            ? undefined
-            : { x: ['-2%', '2%', '-2%'], y: ['-1.5%', '1.5%', '-1.5%'] }
-        }
-        transition={
-          reduceMotion
-            ? undefined
-            : { duration: 30, repeat: Infinity, ease: 'easeInOut' }
-        }
-      />
-
-      {/* Grid overlay (financial/professional aesthetic) */}
+      {/* Subtle grid pattern */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 transition-opacity duration-500"
         style={{
           backgroundImage: `
-            linear-gradient(0deg, rgba(212, 175, 55, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(212, 175, 55, 0.3) 1px, transparent 1px)
+            linear-gradient(0deg, ${colors.grid} 1px, transparent 1px),
+            linear-gradient(90deg, ${colors.grid} 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
+          opacity: 0.5,
         }}
       />
 
-      {/* Network hubs (static cores with breathing glow) */}
-      <div className="absolute inset-0">
-        {hubs.map((h, idx) => (
+      {/* Horizontal wave lines */}
+      {waves.map((wave) => (
+        <motion.div
+          key={`wave-${wave.id}`}
+          className="absolute left-0 right-0 h-[1px]"
+          style={{
+            top: `${wave.y}%`,
+            background: `linear-gradient(90deg, transparent, ${colors.wave}, transparent)`,
+          }}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  scaleX: [1, 1.1, 1],
+                  opacity: [wave.opacity, wave.opacity * 1.5, wave.opacity],
+                }
+          }
+          transition={
+            reduceMotion
+              ? undefined
+              : {
+                  duration: wave.duration,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: wave.delay,
+                }
+          }
+        />
+      ))}
+
+      {/* Flowing particles */}
+      {!reduceMotion &&
+        particles.map((particle) => (
           <motion.div
-            key={`hub-${idx}`}
+            key={`particle-${particle.id}`}
             className="absolute rounded-full"
             style={{
-              left: h.left,
-              top: h.top,
-              width: idx === 4 ? 10 : 6, // Center hub is larger
-              height: idx === 4 ? 10 : 6,
-              transform: 'translate(-50%, -50%)',
-              background:
-                idx === 4
-                  ? 'rgba(244, 208, 63, 0.70)'
-                  : 'rgba(212, 175, 55, 0.50)',
-              boxShadow:
-                idx === 4
-                  ? '0 0 40px rgba(244, 208, 63, 0.25)'
-                  : '0 0 20px rgba(212, 175, 55, 0.15)',
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: particle.size,
+              height: particle.size,
+              backgroundColor: colors.particle,
+              boxShadow: `0 0 ${particle.size * 2}px ${colors.particleGlow}`,
             }}
-            animate={
-              reduceMotion ? undefined : { opacity: [0.3, 0.8, 0.3] }
-            }
-            transition={
-              reduceMotion
-                ? undefined
-                : {
-                    duration: h.dur,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: h.delay,
-                  }
-            }
+            animate={{
+              y: [0, -particle.amplitude, 0, particle.amplitude, 0],
+              x: [0, particle.amplitude * 0.3, 0, -particle.amplitude * 0.3, 0],
+              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: particle.delay,
+            }}
           />
         ))}
-      </div>
 
-      {/* Data flow lanes with traveling filaments */}
-      {!reduceMotion &&
-        lanes.map((l, idx) => {
-          const from = l.reverse ? '110%' : '-10%';
-          const to = l.reverse ? '-10%' : '110%';
-
-          // Anchor points along each lane
-          const anchorStops = [18, 36, 54, 72, 88];
-          const phaseBase = idx * 0.45;
-
-          return (
-            <div
-              key={`lane-${idx}`}
-              className="absolute"
+      {/* Central flowing stream - represents liquidity */}
+      {!reduceMotion && (
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Stream particles moving left to right */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`stream-${i}`}
+              className="absolute h-[2px]"
               style={{
-                left: l.left,
-                top: l.top,
-                width: l.len,
-                height: 12,
-                transform: `rotate(${l.angle}deg)`,
-                transformOrigin: 'left center',
+                top: `${40 + i * 3}%`,
+                width: '30%',
+                background: `linear-gradient(90deg, transparent, ${colors.particle}, transparent)`,
               }}
-            >
-              {/* Faint lane trace */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    'linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.06), transparent)',
-                  filter: 'blur(0.5px)',
-                  opacity: 0.4,
-                }}
-              />
+              animate={{
+                x: ['-30%', '130%'],
+                opacity: [0, 0.5, 0],
+              }}
+              transition={{
+                duration: 10 + i * 2,
+                repeat: Infinity,
+                ease: 'linear',
+                delay: i * 1.5,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
-              {/* Anchor nodes along the lane */}
-              {anchorStops.map((x, aIdx) => {
-                const isActive = aIdx === 1 || aIdx === 3;
-                const size = aIdx % 2 === 0 ? 2 : 3;
-
-                return (
-                  <motion.div
-                    key={`a-${idx}-${aIdx}`}
-                    className="absolute top-1/2 -translate-y-1/2 rounded-full"
-                    style={{
-                      left: `${x}%`,
-                      width: size,
-                      height: size,
-                      background: isActive
-                        ? 'rgba(244, 208, 63, 0.45)'
-                        : 'rgba(255, 255, 255, 0.20)',
-                      boxShadow: isActive
-                        ? '0 0 12px rgba(244, 208, 63, 0.12)'
-                        : 'none',
-                    }}
-                    animate={{ opacity: [0.15, 0.6, 0.15] }}
-                    transition={{
-                      duration: 6.5 + (aIdx % 3) * 1.2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: phaseBase + aIdx * 0.2,
-                    }}
-                  />
-                );
-              })}
-
-              {/* Traveling filament (data packet) */}
-              <motion.div
-                className="absolute top-1/2 h-[2px] -translate-y-1/2"
-                style={{
-                  width: '42%',
-                  background: l.reverse
-                    ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.50), rgba(244, 208, 63, 0.60), rgba(244, 208, 63, 0.0))'
-                    : 'linear-gradient(90deg, rgba(212, 175, 55, 0.0), rgba(212, 175, 55, 0.60), rgba(244, 208, 63, 0.50), rgba(244, 208, 63, 0.0))',
-                  filter: 'blur(0.4px)',
-                }}
-                initial={{ x: from, opacity: 0 }}
-                animate={{ x: [from, to], opacity: [0, 0.7, 0.7, 0] }}
-                transition={{
-                  duration: l.dur,
-                  repeat: Infinity,
-                  ease: 'linear',
-                  delay: l.delay,
-                  times: [0, 0.15, 0.8, 1],
-                }}
-              />
-            </div>
-          );
-        })}
-
-      {/* Processing pulses around hubs */}
-      {!reduceMotion &&
-        hubs.map((h, idx) => (
+      {/* Pulse rings - represents value nodes */}
+      {!reduceMotion && (
+        <>
           <motion.div
-            key={`pulse-${idx}`}
-            className="absolute rounded-full"
-            style={{
-              left: h.left,
-              top: h.top,
-              width: idx === 4 ? 20 : 14,
-              height: idx === 4 ? 20 : 14,
-              transform: 'translate(-50%, -50%)',
-              border: '1px solid rgba(244, 208, 63, 0.35)',
-              boxShadow: '0 0 20px rgba(244, 208, 63, 0.08)',
+            className="absolute left-1/4 top-1/3 w-32 h-32 rounded-full border"
+            style={{ borderColor: colors.wave }}
+            animate={{
+              scale: [1, 2, 3],
+              opacity: [0.3, 0.1, 0],
             }}
-            animate={{ opacity: [0, 0.5, 0], scale: [1, 3.2, 4.8] }}
             transition={{
-              duration: h.dur,
+              duration: 6,
               repeat: Infinity,
               ease: 'easeOut',
-              delay: h.delay,
             }}
           />
-        ))}
+          <motion.div
+            className="absolute right-1/4 top-2/3 w-24 h-24 rounded-full border"
+            style={{ borderColor: colors.wave }}
+            animate={{
+              scale: [1, 2, 3],
+              opacity: [0.3, 0.1, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: 'easeOut',
+              delay: 2,
+            }}
+          />
+        </>
+      )}
 
-      {/* Scan shimmer effect */}
-      <motion.div
-        className="absolute inset-0 opacity-[0.03]"
+      {/* Bottom gradient anchor */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[30vh] transition-opacity duration-500"
         style={{
-          backgroundImage:
-            'linear-gradient(to bottom, transparent, rgba(244, 208, 63, 0.12), transparent)',
-          backgroundSize: '100% 280px',
+          background: `radial-gradient(800px 300px at 50% 100%, ${colors.gradient1}, transparent 60%)`,
         }}
-        animate={
-          reduceMotion
-            ? undefined
-            : { backgroundPositionY: ['0px', '280px'] }
-        }
-        transition={
-          reduceMotion
-            ? undefined
-            : { duration: 20, repeat: Infinity, ease: 'linear' }
-        }
       />
 
-      {/* Bottom anchor glow */}
-      <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-[radial-gradient(1000px_400px_at_50%_100%,rgba(212,175,55,0.10),transparent_60%)]" />
-
       {/* Vignette */}
-      <div className="absolute inset-0 [background:radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.60)_100%)]" />
+      <div
+        className="absolute inset-0 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(circle at center, transparent 30%, ${colors.vignette} 100%)`,
+        }}
+      />
     </div>
   );
 }
