@@ -42,7 +42,7 @@
 - [x] **Reserve Transparency Section**: Link to Brale attestations
 - [x] **Regulatory Framework Section**: Brale NMLS #2376957 details
 - [x] **How It Works Section**: Mint/redeem flow diagram
-- [x] **FAQ Section**: Common questions about USC
+- [x] **FAQ Section**: Collapsible accordion with common questions about USC
 - [x] **Security Section**: Smart contract audits, custody info
 - [x] Add JSON-LD structured data for organization/cryptocurrency
 
@@ -113,8 +113,8 @@
 - [x] Mobile responsiveness audit (375px+)
 - [x] Accessibility audit (WCAG AA compliant)
 - [x] Image optimization (SVG assets + dynamic OG images)
-- [x] Meta tags and OpenGraph images
-- [x] Favicon and PWA manifest
+- [x] Meta tags and OpenGraph images (enhanced with USC coin visual, CTA button)
+- [x] Favicon and apple-icon (USC coin design with $ symbol)
 - [x] Error boundaries and loading states
 - [x] 404 page
 
@@ -185,7 +185,7 @@
 ## Progress Tracking
 
 **Current Phase**: 7 - Launch Preparation (Complete)
-**Last Updated**: 2026-01-24
+**Last Updated**: 2026-01-23
 **Overall Progress**: 97%
 
 ### Completion by Phase
