@@ -18,26 +18,71 @@ export default function AppleIcon() {
           borderRadius: '36px',
         }}
       >
+        {/* USC Coin */}
         <div
           style={{
-            width: '120px',
-            height: '120px',
+            width: '140px',
+            height: '140px',
             borderRadius: '50%',
             backgroundColor: '#33FD99',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxShadow: '0 4px 20px rgba(51, 253, 153, 0.3)',
           }}
         >
-          <span
+          {/* Inner ring for coin effect */}
+          <div
             style={{
-              fontSize: '60px',
-              fontWeight: 'bold',
-              color: '#121412',
+              width: '120px',
+              height: '120px',
+              borderRadius: '50%',
+              border: '3px solid #121412',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
-            $
-          </span>
+            {/* Dollar sign with vertical bar styling like USC logo */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                position: 'relative',
+              }}
+            >
+              {/* Top bar */}
+              <div
+                style={{
+                  width: '6px',
+                  height: '14px',
+                  backgroundColor: '#121412',
+                  marginBottom: '-6px',
+                }}
+              />
+              {/* S symbol */}
+              <span
+                style={{
+                  fontSize: '56px',
+                  fontWeight: 'bold',
+                  color: '#121412',
+                  lineHeight: 1,
+                }}
+              >
+                S
+              </span>
+              {/* Bottom bar */}
+              <div
+                style={{
+                  width: '6px',
+                  height: '14px',
+                  backgroundColor: '#121412',
+                  marginTop: '-6px',
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     ),

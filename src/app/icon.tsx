@@ -15,18 +15,48 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#33FD99',
-          borderRadius: '6px',
+          borderRadius: '50%',
         }}
       >
-        <span
+        {/* Dollar sign with vertical bar styling like USC logo */}
+        <div
           style={{
-            fontSize: '20px',
-            fontWeight: 'bold',
-            color: '#121412',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
           }}
         >
-          $
-        </span>
+          {/* Top bar */}
+          <div
+            style={{
+              width: '2px',
+              height: '4px',
+              backgroundColor: '#121412',
+              marginBottom: '-2px',
+            }}
+          />
+          {/* S symbol */}
+          <span
+            style={{
+              fontSize: '18px',
+              fontWeight: 'bold',
+              color: '#121412',
+              lineHeight: 1,
+            }}
+          >
+            S
+          </span>
+          {/* Bottom bar */}
+          <div
+            style={{
+              width: '2px',
+              height: '4px',
+              backgroundColor: '#121412',
+              marginTop: '-2px',
+            }}
+          />
+        </div>
       </div>
     ),
     {
