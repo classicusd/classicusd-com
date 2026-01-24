@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -42,10 +43,16 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-usc-green font-bold text-xl">$USC</span>
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/images/usc.svg"
+              alt="Classic USD"
+              width={32}
+              height={32}
+              className="w-8 h-8"
+            />
             <span className="text-usc-text-muted text-sm hidden sm:inline">Classic USD</span>
-          </div>
+          </Link>
           <div className="flex items-center gap-4">
             <Link
               href="/docs"
