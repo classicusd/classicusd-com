@@ -1,0 +1,54 @@
+# Classic USD — The Fiat-Backed US Dollar for Ethereum Classic
+
+> Classic USD ($USC) is a regulated, fiat-backed stablecoin on Ethereum Classic and Polygon. Each $USC is backed 1:1 by US dollars and redeemable at any time.
+
+## About
+
+Classic USD ($USC) is the first and definitive US dollar stablecoin on Ethereum Classic. Issued by Brale Inc. (NMLS #2376957), a US-regulated financial services company with state money transmission licenses. $USC brings dollar liquidity to ETC's DeFi ecosystem.
+
+## How It Works
+
+1. **Mint** — Deposit USD through the Brale Platform to receive $USC tokens 1:1.
+2. **Use** — Trade on ETCswap, provide liquidity, or use in DeFi protocols.
+3. **Redeem** — Burn $USC to receive USD, USDC, or USDP back 1:1.
+
+## Token Details
+
+- Name: Classic USD
+- Symbol: USC
+- Decimals: 6
+- Standard: ERC-20
+
+## Deployed Contracts
+
+- Ethereum Classic (Chain 61): `0xDE093684c796204224BC081f937aa059D903c52a`
+- Polygon (Chain 137): `0x131409b31bf446737dd04353d43dacada544b6fa`
+- Mordor Testnet (Chain 63): `0xDE093684c796204224BC081f937aa059D903c52a`
+
+## Key Features
+
+- Fiat-backed 1:1 by US dollars in reserve
+- US-regulated issuer (Brale Inc., NMLS #2376957)
+- Regular third-party reserve attestations
+- Multi-chain: Ethereum Classic + Polygon
+- Tradeable on ETCswap V2 and V3
+
+## DeFi Integrations
+
+- ETCswap V2 — Simple AMM DEX (v2.etcswap.org)
+- ETCswap V3 — Concentrated liquidity CLMM DEX (v3.etcswap.org)
+
+## Web Properties
+
+- classicusd.com — This site (USC information)
+- app.brale.xyz — Mint and redeem USC
+- etcswap.org — Trade USC on DEX
+- coingecko.com/en/coins/classic-usd — Market data
+
+## Issuer
+
+Brale Inc. — US-regulated financial services company (NMLS #2376957)
+
+## Authors
+
+- White B0x Inc. (whiteb0x.com)
