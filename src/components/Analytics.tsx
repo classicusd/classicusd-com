@@ -11,16 +11,3 @@ export function Analytics() {
     />
   );
 }
-
-/**
- * Track custom events (works with Plausible)
- */
-export function trackEvent(eventName: string, props?: Record<string, string | number | boolean>) {
-  if (typeof window !== 'undefined' && ANALYTICS_PROVIDER === 'plausible') {
-    // Plausible custom event tracking
-    const plausible = (window as unknown as { plausible?: (event: string, options?: { props?: Record<string, string | number | boolean> }) => void }).plausible;
-    if (plausible) {
-      plausible(eventName, { props });
-    }
-  }
-}
